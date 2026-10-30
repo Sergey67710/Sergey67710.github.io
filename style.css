@@ -34,3 +34,11 @@ footer{text-align:center;color:#7f9aa8;font-size:10px;letter-spacing:2px;margin-
 .modal-hint{font-size:10px;line-height:1.45;color:#9db0ba;margin:12px 0 0}
 body.modal-open{overflow:hidden}
 @media(max-width:380px){.modal-panel{padding:23px 17px 18px}}
+
+
+/* Tap-to-copy Wi-Fi network name */
+.copy-ssid{display:inline-block;width:fit-content;padding:2px 0;border:0;border-radius:5px;background:transparent;color:#f5f8fa;font:700 15px inherit;letter-spacing:.3px;text-align:left;text-decoration:underline;text-decoration-color:#70d9c2;text-underline-offset:4px;cursor:pointer}
+.copy-ssid:focus-visible{outline:2px solid #70d9c2;outline-offset:4px}
+.copy-ssid.is-copied{color:#8de8c9}
+.copy-feedback{display:block;min-height:14px;margin-top:3px;color:#8de8c9;font-size:11px}
+.modal-ssid{font-size:14px;text-align:center}
