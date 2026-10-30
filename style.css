@@ -1,0 +1,17 @@
+*{box-sizing:border-box}
+:root{color-scheme:dark;--bg:#0b1118;--panel:#17232f;--panel2:#202f3c;--cyan:#42d9e8;--muted:#a9bac7;--white:#f5f8fa}
+body{margin:0;min-height:100vh;padding:24px 14px;background:radial-gradient(circle at 50% 0,#173545 0,#0b1118 48%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--white);display:flex;justify-content:center;align-items:flex-start}
+.card{width:min(100%,470px);background:rgba(23,35,47,.97);border:1px solid #2d4655;border-radius:24px;padding:26px;box-shadow:0 24px 70px #0008}
+.identity{text-align:center;padding:8px 0 24px}.avatar{width:76px;height:76px;margin:0 auto 14px;border-radius:22px;background:linear-gradient(145deg,#244d5d,#14232e);border:1px solid #3c7b8b;display:grid;place-items:center;color:var(--cyan);font-size:25px;font-weight:800}
+.eyebrow{font-size:10px;letter-spacing:2px;color:var(--cyan);font-weight:700;margin:0 0 7px}h1{font-size:28px;margin:0}h2{font-size:20px;margin:0}
+.actions{display:grid;gap:10px}.action{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--white);background:var(--panel2);padding:14px 15px;border:1px solid #304452;border-radius:14px}
+.symbol{width:34px;height:34px;display:grid;place-items:center;color:var(--cyan);font-size:22px}.action b,.action small{display:block}.action b{font-size:14px}.action small{font-size:12px;color:var(--muted);margin-top:3px}.arrow{margin-left:auto;color:var(--cyan);font-size:25px}
+.save,button{border:1px solid #3b7482;border-radius:12px;padding:13px 14px;background:#183d49;color:#eaffff;font:600 13px inherit;text-align:center;text-decoration:none;cursor:pointer}
+.wifi{margin-top:22px;padding:18px;background:linear-gradient(145deg,#153d39,#132c31);border:1px solid #28675d;border-radius:17px}
+.wifi-heading{display:flex;align-items:center;gap:12px;margin-bottom:17px}.wifi-icon{font-size:31px;color:#62e7bb}.wifi-heading .eyebrow{color:#8de8c9}
+.network{display:flex;flex-direction:column;gap:5px;padding:10px 0;border-bottom:1px solid #ffffff20}.network span{font-size:11px;color:#b8d4cb}.network b{font-size:15px;letter-spacing:.3px}
+.wifi-buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:13px}.wifi-buttons button{background:#24584d;border-color:#478b78;font-size:12px}
+.wifi-qr{margin-top:16px;padding-top:12px;border-top:1px solid #ffffff20}.wifi-qr summary{font-size:13px;font-weight:650;cursor:pointer}.wifi-qr img{display:block;width:min(100%,220px);margin:16px auto 8px;background:white;padding:9px;border-radius:10px}
+.wifi-qr p,.security-note{font-size:11px;line-height:1.5;color:#c0d8d0}.security-note{margin:14px 0 0;color:#9dbbb1}
+footer{text-align:center;color:#7f9aa8;font-size:10px;letter-spacing:2px;margin-top:22px}footer span{color:var(--cyan);padding:0 5px}
+@media(max-width:380px){.card{padding:19px}.wifi-buttons{grid-template-columns:1fr}h1{font-size:25px}}
