@@ -1,32 +1,24 @@
 const wifiPassword = "G03382284212";
-const passwordNode = document.getElementById("password");
-const showPasswordButton = document.getElementById("showPassword");
-const copyPasswordButton = document.getElementById("copyPassword");
-let visible = false;
-
-showPasswordButton.addEventListener("click", () => {
-  visible = !visible;
-  passwordNode.textContent = visible ? wifiPassword : "•••••••••••";
-  showPasswordButton.textContent = visible ? "Скрыть пароль" : "Показать пароль";
-});
+const wifiNetworkName = "GUEST_TRAVEL_5G";
 
 async function copyWifiPassword(button, defaultLabel) {
+  let copied = false;
   try {
-    await navigator.clipboard.writeText(wifiPassword);
-    button.textContent = "Скопировано";
-    window.setTimeout(() => button.textContent = defaultLabel, 1800);
-  } catch {
-    passwordNode.textContent = wifiPassword;
-    visible = true;
-    showPasswordButton.textContent = "Скрыть пароль";
-    button.textContent = "Пароль показан выше";
-    window.setTimeout(() => button.textContent = defaultLabel, 2200);
-  }
-}
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(wifiPassword);
+      copied = true;
+    }
+  } catch {}
 
-copyPasswordButton.addEventListener("click", () => {
-  copyWifiPassword(copyPasswordButton, "Копировать пароль");
-});
+  if (!copied) {
+    window.prompt("Автоматическое копирование недоступно. Скопируйте пароль:", wifiPassword);
+    button.textContent = "Скопируйте пароль в окне";
+    window.setTimeout(() => button.textContent = defaultLabel, 2200);
+    return;
+  }
+  button.textContent = "Скопировано";
+  window.setTimeout(() => button.textContent = defaultLabel, 1800);
+}
 
 const wifiDialog = document.getElementById("wifiDialog");
 const openWifiDialogButton = document.getElementById("openWifiDialog");
@@ -55,63 +47,43 @@ wifiDialog.querySelectorAll("[data-close-wifi]").forEach((element) => {
 copyDialogPasswordButton.addEventListener("click", () => {
   copyWifiPassword(copyDialogPasswordButton, "Скопировать пароль");
 });
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && wifiDialog.classList.contains("is-open")) {
-    closeWifiDialog();
-  }
-});
-
-
-const wifiNetworkName = "GUEST_TRAVEL_5G";
 
 async function copyNetworkName(button, feedback) {
   let copied = false;
-
-  // Modern clipboard API (available only in secure contexts and when permitted).
   try {
     if (navigator.clipboard && window.isSecureContext) {
       await navigator.clipboard.writeText(wifiNetworkName);
       copied = true;
     }
-  } catch {
-    // Continue to the legacy selection-based fallback below.
-  }
+  } catch {}
 
-  // Fallback for mobile browsers with limited Clipboard API support.
   if (!copied) {
     const temporaryInput = document.createElement("textarea");
     temporaryInput.value = wifiNetworkName;
     temporaryInput.setAttribute("readonly", "");
-    temporaryInput.setAttribute("aria-hidden", "true");
     temporaryInput.style.position = "fixed";
     temporaryInput.style.left = "8px";
     temporaryInput.style.top = "8px";
     temporaryInput.style.width = "220px";
     temporaryInput.style.height = "36px";
-    temporaryInput.style.padding = "4px";
     temporaryInput.style.fontSize = "16px";
     temporaryInput.style.opacity = "0.02";
     temporaryInput.style.zIndex = "9999";
     document.body.appendChild(temporaryInput);
-
     try {
       temporaryInput.focus();
       temporaryInput.select();
       temporaryInput.setSelectionRange(0, temporaryInput.value.length);
       copied = document.execCommand("copy");
-    } catch {
-      copied = false;
-    }
+    } catch {}
     temporaryInput.remove();
   }
 
   if (!copied) {
-    // Last-resort manual copy: the value is selectable in the native dialog.
     window.prompt("Автоматическое копирование недоступно. Скопируйте имя сети:", wifiNetworkName);
-    feedback.textContent = "Если окно не открылось, удерживайте имя сети для копирования";
+    feedback.textContent = "Скопируйте имя сети в окне";
     return;
   }
-
   feedback.textContent = "Имя сети скопировано";
   button.classList.add("is-copied");
   window.setTimeout(() => {
@@ -120,9 +92,12 @@ async function copyNetworkName(button, feedback) {
   }, 2200);
 }
 
-const copyNetworkNameButton = document.getElementById("copyNetworkName");
 const copyNetworkNameInDialogButton = document.getElementById("copyNetworkNameInDialog");
-const ssidCopyFeedback = document.getElementById("ssidCopyFeedback");
 const ssidCopyFeedbackInDialog = document.getElementById("ssidCopyFeedbackInDialog");
-copyNetworkNameButton.addEventListener("click", () => copyNetworkName(copyNetworkNameButton, ssidCopyFeedback));
 copyNetworkNameInDialogButton.addEventListener("click", () => copyNetworkName(copyNetworkNameInDialogButton, ssidCopyFeedbackInDialog));
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && wifiDialog.classList.contains("is-open")) {
+    closeWifiDialog();
+  }
+});

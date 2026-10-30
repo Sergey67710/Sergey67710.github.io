@@ -5,8 +5,7 @@
 <meta name="description" content="Цифровая визитка Сергея Ющака и гостевой Wi-Fi">
 <title>Ющак Сергей — Digital ID</title><link rel="stylesheet" href="style.css">
 </head><body><main class="card">
-<header class="identity"><div class="avatar" aria-hidden="true">СЮ</div>
-<p class="eyebrow">DIGITAL CONTACT CARD</p><h1>Ющак Сергей</h1></header>
+<header class="identity"><img class="avatar" src="avatar-sergey.jpg" alt="Фото Сергея"><h1>Ющак Сергей</h1></header>
 <section class="actions" aria-label="Контакты">
 <a class="action" href="tel:+79140240974"><span class="symbol">☎</span><span><b>Позвонить</b><small>+7 914 024-09-74</small></span><span class="arrow">›</span></a>
 <a class="action" href="mailto:yuschak2017@ya.ru"><span class="symbol">✉</span><span><b>Написать e-mail</b><small>yuschak2017@ya.ru</small></span><span class="arrow">›</span></a>
@@ -14,10 +13,7 @@
 <a class="save" href="contact.vcf" download="Yushchak_Sergey.vcf">＋ Сохранить контакт</a>
 </section>
 <section class="wifi">
-<div class="wifi-heading"><span class="wifi-icon">⌁</span><div><p class="eyebrow">GUEST NETWORK</p><h2>Гостевой Wi-Fi</h2></div></div>
-<div class="network"><span>Название сети · нажмите, чтобы скопировать</span><button class="copy-ssid" id="copyNetworkName" type="button">GUEST_TRAVEL_5G</button><small class="copy-feedback" id="ssidCopyFeedback" aria-live="polite"></small></div>
-<div class="network"><span>Пароль</span><b id="password">•••••••••••</b></div>
-<div class="wifi-buttons"><button id="showPassword" type="button">Показать пароль</button><button id="copyPassword" type="button">Копировать пароль</button></div>
+<div class="wifi-heading"><span class="wifi-icon">⌁</span><div><h2>Гостевой Wi-Fi</h2></div></div>
 <button class="connect-wifi" id="openWifiDialog" type="button">Подключиться к Wi-Fi</button>
 <div class="modal" id="wifiDialog" aria-hidden="true">
 <div class="modal-backdrop" data-close-wifi></div>
