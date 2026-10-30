@@ -15,7 +15,7 @@
 </section>
 <section class="wifi">
 <div class="wifi-heading"><span class="wifi-icon">⌁</span><div><p class="eyebrow">GUEST NETWORK</p><h2>Гостевой Wi-Fi</h2></div></div>
-<div class="network"><span>Название сети</span><b>GUEST_TRAVEL_5G</b></div>
+<div class="network"><span>Название сети · нажмите, чтобы скопировать</span><button class="copy-ssid" id="copyNetworkName" type="button">GUEST_TRAVEL_5G</button><small class="copy-feedback" id="ssidCopyFeedback" aria-live="polite"></small></div>
 <div class="network"><span>Пароль</span><b id="password">•••••••••••</b></div>
 <div class="wifi-buttons"><button id="showPassword" type="button">Показать пароль</button><button id="copyPassword" type="button">Копировать пароль</button></div>
 <button class="connect-wifi" id="openWifiDialog" type="button">Подключиться к Wi-Fi</button>
@@ -25,11 +25,11 @@
 <button class="modal-close" id="closeWifiDialog" type="button" aria-label="Закрыть">×</button>
 <p class="eyebrow">GUEST NETWORK</p><h2 id="wifiDialogTitle">Подключение к Wi-Fi</h2>
 <img class="modal-qr" src="wifi-qr.svg" alt="QR-код скрытой сети GUEST_TRAVEL_5G">
-<p class="modal-network">GUEST_TRAVEL_5G <span>· скрытая сеть · WPA2</span></p>
+<div class="modal-network"><button class="copy-ssid modal-ssid" id="copyNetworkNameInDialog" type="button">GUEST_TRAVEL_5G</button><span>Нажмите на имя, чтобы скопировать · скрытая сеть · WPA2</span><small class="copy-feedback" id="ssidCopyFeedbackInDialog" aria-live="polite"></small></div>
 <ol class="wifi-instructions">
 <li>Откройте камеру телефона и наведите её на QR-код.</li>
 <li>Нажмите уведомление о Wi-Fi и подтвердите подключение.</li>
-<li>Если камера не предложит подключение, добавьте скрытую сеть вручную по имени и паролю.</li>
+<li>Если QR-код не сработал, нажмите на имя сети выше, чтобы скопировать его. В настройках Wi-Fi выберите добавление скрытой сети и вставьте имя и пароль.</li>
 </ol>
 <button class="modal-copy" id="copyWifiPassword" type="button">Скопировать пароль</button>
 <p class="modal-hint">Браузер не может подключить устройство автоматически. Подключение подтверждается средствами телефона.</p>
