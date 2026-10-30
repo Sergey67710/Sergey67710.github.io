@@ -65,23 +65,53 @@ document.addEventListener("keydown", (event) => {
 const wifiNetworkName = "GUEST_TRAVEL_5G";
 
 async function copyNetworkName(button, feedback) {
+  let copied = false;
+
+  // Modern clipboard API (available only in secure contexts and when permitted).
   try {
-    await navigator.clipboard.writeText(wifiNetworkName);
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(wifiNetworkName);
+      copied = true;
+    }
   } catch {
+    // Continue to the legacy selection-based fallback below.
+  }
+
+  // Fallback for mobile browsers with limited Clipboard API support.
+  if (!copied) {
     const temporaryInput = document.createElement("textarea");
     temporaryInput.value = wifiNetworkName;
     temporaryInput.setAttribute("readonly", "");
+    temporaryInput.setAttribute("aria-hidden", "true");
     temporaryInput.style.position = "fixed";
-    temporaryInput.style.opacity = "0";
+    temporaryInput.style.left = "8px";
+    temporaryInput.style.top = "8px";
+    temporaryInput.style.width = "220px";
+    temporaryInput.style.height = "36px";
+    temporaryInput.style.padding = "4px";
+    temporaryInput.style.fontSize = "16px";
+    temporaryInput.style.opacity = "0.02";
+    temporaryInput.style.zIndex = "9999";
     document.body.appendChild(temporaryInput);
-    temporaryInput.select();
-    const copied = document.execCommand("copy");
-    temporaryInput.remove();
-    if (!copied) {
-      feedback.textContent = "Скопировать не удалось — введите имя вручную";
-      return;
+
+    try {
+      temporaryInput.focus();
+      temporaryInput.select();
+      temporaryInput.setSelectionRange(0, temporaryInput.value.length);
+      copied = document.execCommand("copy");
+    } catch {
+      copied = false;
     }
+    temporaryInput.remove();
   }
+
+  if (!copied) {
+    // Last-resort manual copy: the value is selectable in the native dialog.
+    window.prompt("Автоматическое копирование недоступно. Скопируйте имя сети:", wifiNetworkName);
+    feedback.textContent = "Если окно не открылось, удерживайте имя сети для копирования";
+    return;
+  }
+
   feedback.textContent = "Имя сети скопировано";
   button.classList.add("is-copied");
   window.setTimeout(() => {
