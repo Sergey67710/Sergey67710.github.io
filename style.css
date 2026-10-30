@@ -15,3 +15,22 @@ body{margin:0;min-height:100vh;padding:24px 14px;background:radial-gradient(circ
 .wifi-qr p,.security-note{font-size:11px;line-height:1.5;color:#c0d8d0}.security-note{margin:14px 0 0;color:#9dbbb1}
 footer{text-align:center;color:#7f9aa8;font-size:10px;letter-spacing:2px;margin-top:22px}footer span{color:var(--cyan);padding:0 5px}
 @media(max-width:380px){.card{padding:19px}.wifi-buttons{grid-template-columns:1fr}h1{font-size:25px}}
+
+
+/* Wi-Fi connection dialog */
+.connect-wifi{display:block;width:100%;margin-top:10px;background:#1d6870;border-color:#4bc5c9;font-size:13px}
+.modal{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:18px}
+.modal.is-open{display:flex}
+.modal-backdrop{position:absolute;inset:0;background:#02070bd9;backdrop-filter:blur(5px)}
+.modal-panel{position:relative;z-index:1;width:min(100%,390px);max-height:calc(100vh - 36px);overflow:auto;padding:25px 22px 20px;border:1px solid #3b6671;border-radius:20px;background:#14232d;box-shadow:0 24px 80px #000b;text-align:center}
+.modal-close{position:absolute;right:12px;top:10px;width:36px;height:36px;padding:0;font-size:25px;line-height:1;background:#203945;border-color:#365a67}
+.modal-panel h2{margin:0 28px 14px;font-size:21px}
+.modal-qr{display:block;width:min(100%,250px);height:auto;margin:12px auto;padding:10px;background:#fff;border-radius:12px}
+.modal-network{font-size:14px;font-weight:700;margin:10px 0 14px}
+.modal-network span{display:block;margin-top:4px;font-size:11px;font-weight:400;color:#a9bac7}
+.wifi-instructions{margin:0;padding-left:22px;text-align:left;color:#d3e0e6;font-size:12px;line-height:1.55}
+.wifi-instructions li{padding:4px 0}
+.modal-copy{width:100%;margin-top:15px;background:#24584d;border-color:#478b78}
+.modal-hint{font-size:10px;line-height:1.45;color:#9db0ba;margin:12px 0 0}
+body.modal-open{overflow:hidden}
+@media(max-width:380px){.modal-panel{padding:23px 17px 18px}}
