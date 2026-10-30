@@ -60,3 +60,39 @@ document.addEventListener("keydown", (event) => {
     closeWifiDialog();
   }
 });
+
+
+const wifiNetworkName = "GUEST_TRAVEL_5G";
+
+async function copyNetworkName(button, feedback) {
+  try {
+    await navigator.clipboard.writeText(wifiNetworkName);
+  } catch {
+    const temporaryInput = document.createElement("textarea");
+    temporaryInput.value = wifiNetworkName;
+    temporaryInput.setAttribute("readonly", "");
+    temporaryInput.style.position = "fixed";
+    temporaryInput.style.opacity = "0";
+    document.body.appendChild(temporaryInput);
+    temporaryInput.select();
+    const copied = document.execCommand("copy");
+    temporaryInput.remove();
+    if (!copied) {
+      feedback.textContent = "Скопировать не удалось — введите имя вручную";
+      return;
+    }
+  }
+  feedback.textContent = "Имя сети скопировано";
+  button.classList.add("is-copied");
+  window.setTimeout(() => {
+    feedback.textContent = "";
+    button.classList.remove("is-copied");
+  }, 2200);
+}
+
+const copyNetworkNameButton = document.getElementById("copyNetworkName");
+const copyNetworkNameInDialogButton = document.getElementById("copyNetworkNameInDialog");
+const ssidCopyFeedback = document.getElementById("ssidCopyFeedback");
+const ssidCopyFeedbackInDialog = document.getElementById("ssidCopyFeedbackInDialog");
+copyNetworkNameButton.addEventListener("click", () => copyNetworkName(copyNetworkNameButton, ssidCopyFeedback));
+copyNetworkNameInDialogButton.addEventListener("click", () => copyNetworkName(copyNetworkNameInDialogButton, ssidCopyFeedbackInDialog));
