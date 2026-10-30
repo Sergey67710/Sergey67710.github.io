@@ -18,9 +18,22 @@
 <div class="network"><span>Название сети</span><b>GUEST_TRAVEL_5G</b></div>
 <div class="network"><span>Пароль</span><b id="password">•••••••••••</b></div>
 <div class="wifi-buttons"><button id="showPassword" type="button">Показать пароль</button><button id="copyPassword" type="button">Копировать пароль</button></div>
-<details class="wifi-qr"><summary>Показать QR-код для подключения к Wi-Fi</summary>
-<img src="wifi-qr.svg" alt="QR-код гостевой Wi-Fi сети">
-<p>Отсканируйте камерой телефона и подтвердите подключение, если устройство запросит подтверждение.</p></details>
+<button class="connect-wifi" id="openWifiDialog" type="button">Подключиться к Wi-Fi</button>
+<div class="modal" id="wifiDialog" aria-hidden="true">
+<div class="modal-backdrop" data-close-wifi></div>
+<section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="wifiDialogTitle">
+<button class="modal-close" id="closeWifiDialog" type="button" aria-label="Закрыть">×</button>
+<p class="eyebrow">GUEST NETWORK</p><h2 id="wifiDialogTitle">Подключение к Wi-Fi</h2>
+<img class="modal-qr" src="wifi-qr.svg" alt="QR-код скрытой сети GUEST_TRAVEL_5G">
+<p class="modal-network">GUEST_TRAVEL_5G <span>· скрытая сеть · WPA2</span></p>
+<ol class="wifi-instructions">
+<li>Откройте камеру телефона и наведите её на QR-код.</li>
+<li>Нажмите уведомление о Wi-Fi и подтвердите подключение.</li>
+<li>Если камера не предложит подключение, добавьте скрытую сеть вручную по имени и паролю.</li>
+</ol>
+<button class="modal-copy" id="copyWifiPassword" type="button">Скопировать пароль</button>
+<p class="modal-hint">Браузер не может подключить устройство автоматически. Подключение подтверждается средствами телефона.</p>
+</section></div>
 <p class="security-note">Гостевая сеть открыта для посетителей. Не используйте этот пароль для основной или корпоративной сети.</p>
 </section><footer>DIGITAL ID <span>•</span> CONTACT &amp; CONNECT</footer>
 </main><script src="script.js"></script></body></html>
